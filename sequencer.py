@@ -4,7 +4,6 @@
 # Record/Overdub
 # Assign sequences to keyboard + play
 
-
 from random import *
 import mido
 from mido.ports import MultiPort
@@ -14,7 +13,7 @@ import os,glob
 import threading
 from patterns import *
 
-
+mido.set_backend('mido.backends.rtmidi_python')
 outp= mido.get_output_names()
 inp = mido.get_input_names()
 

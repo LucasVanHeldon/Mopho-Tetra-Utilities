@@ -1057,6 +1057,11 @@ def Breed2(p1,p2,num,gsc='gc1',ps1='p1',ps2='p2'):
 		DoSeqGeneration(c1,c2,num,gsc+str(j))
 	DoGeneration(p1,p2,num,ps1)
 
+def PBreed2(p1,p2,num,gsc='gc1',ps1='p1',ps2='p2'):
+	return DoMutation(p1,p2)		
+		
+	
+
 
 def GenOP(filename1,filename2,filename3,filename4,gsc,ps1,ps2):
 	
@@ -1114,7 +1119,7 @@ def SplitPresets():
 			f.close()
 			
 
-
+	
 	
 def gen():	
 	files = os.listdir('..\Patches')
@@ -1155,6 +1160,50 @@ def Gen2():
 			
 	
 		Breed2(data1,data2,30)
+
+
+def PatchList():	
+	files = os.listdir('.\Patches')
+	return files
 	
-os.chdir('.\gen0')
-gen()
+
+def ReadFile(file):
+	d1 = OpenFile(filename1)
+	
+	if(len(d1) == 298):
+		n = 4
+	else:
+		n = 6
+	
+	data = UnpackBits(d1[n:-1])
+	return data
+	
+def PGen2():
+	files = os.listdir('.\Patches')
+	for i in range(0,len(files),4):
+		filename1 = '.\Patches\\'+files[i]
+		filename2 = '.\Patches\\'+files[i+1]	
+		
+		d1 = OpenFile(filename1)
+		d2 = OpenFile(filename2)
+		
+		if(len(d1) == 298):
+			n = 4
+		else:
+			n = 6
+			
+		data1 = UnpackBits(d1[n:-1])		
+		
+		if(len(d2) == 298):
+			n = 4
+		else:
+			n = 6
+		
+		data2 = UnpackBits(d2[n:-1])
+			
+	
+		return PBreed2(data1,data2,30)
+		
+if __name__ == "__main__":	
+	os.chdir('.\gen0')
+	gen()

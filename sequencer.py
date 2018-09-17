@@ -27,9 +27,9 @@ print "Midi Inputs"
 for y in inp:
 	print y
 	
-keyboard_input = mido.open_input(inp[2])
-clock = mido.open_input(inp[0])
-mopho_output  = mido.open_output(outp[4])
+keyboard_input = mido.open_input(inp[1])
+
+mopho_output  = mido.open_output(outp[2])
 
 notes = {}
 name_notes = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
@@ -165,5 +165,5 @@ def Loop():
 		
 		
 
-MIDIClock().start()
-Loop()
+#MIDIClock().start()
+#Loop()
